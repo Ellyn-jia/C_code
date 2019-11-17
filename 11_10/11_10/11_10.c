@@ -50,47 +50,47 @@
 //来调整该数组中数字的顺序使得数组中所有的奇数位于数组的前半部分，
 //所有偶数位于数组的后半部分。
 #define _CRT_SECURE_NO_WARNINGS 1
-//#include<stdio.h>
-//#include<malloc.h>
-//void change(int* arr, int sz)
-//{
-//	int temp = 0;
-//	int left = 0;
-//	int i = 0;
-//	int right = sz - 1;
-//	while (left < right)
-//	{
-//		while (arr[left] % 2 != 0 && left < right)
-//		{
-//			left++;
-//		}
-//		while (arr[right] % 2 == 0 && left < right)
-//		{
-//			right--;
-//		}
-//			temp = arr[left];
-//			arr[left] = arr[right];
-//			arr[right] = temp;
-//	}
-//	for (i = 0; i < 5; i++)
-//	{
-//		printf("%d ", arr[i]);
-//	}
-//}
-//
-//int main()
-//{
-//	int n;
-//	int i;
-//	scanf("%d", &n);
-//	int* arr = (int*) malloc(sizeof(int) * n);
-//	for (i = 0; i < n; i++)
-//	{
-//		scanf("%d", &arr[i]);
-//	}
-//	change(arr, n);
-//	return 0;
-//}
+#include<stdio.h>
+#include<malloc.h>
+void change(int* arr, int sz)
+{
+	int temp = 0;
+	int left = 0;
+	int i = 0;
+	int right = sz - 1;
+	while (left < right)
+	{
+		while (arr[left] % 2 != 0 && left < right)
+		{
+			left++;
+		}
+		while (arr[right] % 2 == 0 && left < right)
+		{
+			right--;
+		}
+			temp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = temp;
+	}
+	for (i = 0; i < 5; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+}
+
+int main()
+{
+	int n;
+	int i;
+	scanf("%d", &n);
+	int* arr = (int*) malloc(sizeof(int) * n);
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	change(arr, n);
+	return 0;
+////}
 //
 
 
@@ -119,10 +119,27 @@
 //7 8 9
 
 #include <stdio.h>
-
-void Search(int arr[][3])
+#include <malloc.h>
+void Search(int** arr, int row, int col, int key)
 {
-	
+	int startx = row - 1;
+	int starty = 0;
+	while (startx >= 0 && starty < col)
+	{
+		if (arr[startx][starty] == key)
+		{
+			printf("exist\n");
+			break;
+		}
+		else if (arr[startx][starty] > key)
+		{
+			startx--;
+		}
+		else
+			starty++;
+	}
+	if (startx < 0)
+	printf("not found\n");
 }
 int main()
 {
@@ -139,9 +156,9 @@ int main()
 			scanf("%d", &arr[i][j]);
 		}
 	}
-	scanf("%d", &key );
-	Search(arr);
-	return 0
+	scanf("%d", &key);
+	Search(arr, row, col, key);
+	return 0;
 }
 
 
