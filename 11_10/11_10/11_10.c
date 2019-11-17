@@ -49,14 +49,49 @@
 //输入一个整数数组，实现一个函数，
 //来调整该数组中数字的顺序使得数组中所有的奇数位于数组的前半部分，
 //所有偶数位于数组的后半部分。
-
-#include<stdio.h>
-int main()
-{
-	
-	return 0;
-}
-
+#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//#include<malloc.h>
+//void change(int* arr, int sz)
+//{
+//	int temp = 0;
+//	int left = 0;
+//	int i = 0;
+//	int right = sz - 1;
+//	while (left < right)
+//	{
+//		while (arr[left] % 2 != 0 && left < right)
+//		{
+//			left++;
+//		}
+//		while (arr[right] % 2 == 0 && left < right)
+//		{
+//			right--;
+//		}
+//			temp = arr[left];
+//			arr[left] = arr[right];
+//			arr[right] = temp;
+//	}
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//}
+//
+//int main()
+//{
+//	int n;
+//	int i;
+//	scanf("%d", &n);
+//	int* arr = (int*) malloc(sizeof(int) * n);
+//	for (i = 0; i < n; i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
+//	change(arr, n);
+//	return 0;
+//}
+//
 
 
 
@@ -83,6 +118,30 @@ int main()
 //4 5 6
 //7 8 9
 
+#include <stdio.h>
 
+void Search(int arr[][3])
+{
+	
+}
+int main()
+{
+	int row;
+	int col;
+	int key;
+	scanf("%d%d", &row, &col);
+	int** arr = (int**)malloc(sizeof(int*)* row);
+	for (int i = 0; i < row; i++)
+	{
+		arr[i] = (int*)malloc(sizeof(int)* col);
+		for (int j = 0; j < col; j++)
+		{
+			scanf("%d", &arr[i][j]);
+		}
+	}
+	scanf("%d", &key );
+	Search(arr);
+	return 0
+}
 
 
