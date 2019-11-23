@@ -92,12 +92,33 @@
 
 
 //4.实现strchr
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
 
-
-
-
-
-
+//char* Strchr(char* str, int c)
+//{
+//	while (*str != (char)c && *str != '\0')
+//	{
+//		str++;
+//	}
+//	if (*str)
+//		return str;
+//	else
+//		return NULL;
+//}
+//
+//
+//
+//
+//
+//int main()
+//{
+//	char str[] = "ABCDEFGKGEGMK";
+//	char c = ' ';
+//	scanf("%c", &c);
+//	printf("%s\n", Strchr(str, c));
+//	return 0;
+//}
 
 
 
@@ -105,11 +126,40 @@
 
 //5.实现strcmp
 
+int Strcmp(const char*str1, const char* str2)
+{
+	const char* s1 = str1;
+	const char* s2 = str2;
+	while (*s1 && *s2)
+	{
+		if (*s1 > *s2)
+			return 1;
+		else if (*s1 < *s2)
+			return -1;
+		else
+		{
+			s1++;
+			s2++;
+		}
+	}
+	if (*s1 == '\0' && *s2 == '\0')
+		return 0;
+	else if (*s1 == '\0')
+		return -1;
+	else
+		return 1;
+}
 
 
 
 
-
+int main()
+{
+	char str1[] = "ABCDEFGKGEGMKKKK";
+	char str2[] = "ABCDEFGKGEGMKKK";
+	printf("%d\n", Strcmp(str1, str2));
+	return 0;
+}
 
 
 
