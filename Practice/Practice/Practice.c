@@ -71,3 +71,28 @@ int searchInsert(int* nums, int numsSize, int target){
 }
 
 
+bool canConstruct(char * ransomNote, char * magazine){
+	char* ransomNoteStart = ransomNote;
+	char* magazineStart = magazine;
+	while (*ransomNoteStart && *magazineStart)
+	{
+		if (*ransomNoteStart == *magazineStart)
+		{
+			ransomNoteStart++;
+			*magazineStart = '*';
+			magazineStart = magazine;
+		}
+		else
+		{
+			magazineStart++;
+		}
+	}
+	if (*ransomNoteStart == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
