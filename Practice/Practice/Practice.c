@@ -192,3 +192,34 @@ bool containsDuplicate(int* nums, int numsSize){
 
 }
 
+
+
+bool isLongPressedName(char * name, char * typed){
+	if (*name != *typed)
+	{
+		return false;
+	}
+	char* pname = name;
+	char* ptyped = typed;
+	while (*pname && *ptyped)
+	{
+		if (*pname == *ptyped && *pname && *ptyped)
+		{
+			pname++;
+			ptyped++;
+		}
+		else
+		{
+			if (*ptyped != *(pname - 1))
+				return false;
+			else
+				ptyped++;
+		}
+	}
+	if ((*ptyped == NULL && *pname == NULL) || *ptyped)
+		return true;
+	else
+		return false;
+
+}
+
