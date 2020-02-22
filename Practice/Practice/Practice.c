@@ -223,3 +223,129 @@ bool isLongPressedName(char * name, char * typed){
 
 }
 
+
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* sortedSquares(int* A, int ASize, int* returnSize){
+	int start = 0;
+	int end = ASize - 1;
+	int i = 0;
+	int len = ASize;
+	while (i <= ASize - 1)
+	{
+		A[i] = A[i] * A[i];
+		i++;
+	}
+	int* arr = (int*)malloc(sizeof(int)*ASize);
+	while (start <= end)
+	{
+		if (A[start] > A[end])
+		{
+			arr[--ASize] = A[start];
+			start++;
+		}
+		else
+		{
+			arr[--ASize] = A[end];
+			end--;
+		}
+	}
+	*returnSize = len;
+	return arr;
+}
+
+
+
+char * reverseOnlyLetters(char * S){
+	int i = 0;
+	int j = strlen(S) - 1;
+	if (j == 0 || j == -1)
+		return S;
+	while (i <= j)
+	{
+		if (((*(S + i) >= 'A' && *(S + i) <= 'Z') || (*(S + i) >= 'a' && *(S + i) <= 'z')) &&
+			((*(S + j) >= 'A' && *(S + j) <= 'Z') || (*(S + j) >= 'a' && *(S + j) <= 'z')))
+		{
+			char* t = S[i];
+			S[i] = S[j];
+			S[j] = t;
+			i++;
+			j--;
+		}
+		if (!((*(S + i) >= 'A' && *(S + i) <= 'Z') || (*(S + i) >= 'a' && *(S + i) <= 'z')))
+		{
+			i++;
+		}
+		if (!((*(S + j) >= 'A' && *(S + j) <= 'Z') || (*(S + j) >= 'a' && *(S + j) <= 'z')))
+		{
+			j--;
+		}
+	}
+	return S;
+}
+
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* sortArrayByParity(int* A, int ASize, int* returnSize){
+	int* arr = (int*)malloc(sizeof(int)*ASize);
+	int i = 0;
+	int j = 0;
+	while (i <= ASize - 1)
+	{
+		if (A[i] % 2 == 0)
+		{
+			arr[j] = A[i];
+			i++;
+			j++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	i = 0;
+	while (i <= ASize - 1)
+	{
+		if (A[i] % 2 != 0)
+		{
+			arr[j] = A[i];
+			i++;
+			j++;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	*returnSize = ASize;
+	return arr;
+}
+
+
+
+int pivotIndex(int* nums, int numsSize){
+	int i = 0;
+	int sum = 0;
+	while (i <= numsSize - 1)
+	{
+		sum += nums[i];
+		i++;
+	}
+	i = 0;
+	int sumleft = 0;
+	while (i <= numsSize - 1)
+	{
+		if (sumleft == sum - nums[i] - sumleft)
+			return i;
+		else
+			sumleft += nums[i];
+		i++;
+	}
+	return -1;
+}
