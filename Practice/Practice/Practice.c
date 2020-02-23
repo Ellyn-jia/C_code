@@ -349,3 +349,99 @@ int pivotIndex(int* nums, int numsSize){
 	}
 	return -1;
 }
+
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* plusOne(int* digits, int digitsSize, int* returnSize){
+	int* arr = (int*)malloc(sizeof(int)*(digitsSize + 1));
+	int i = digitsSize - 1;
+	while (i >= 0)
+	{
+		if (digits[i] < 9)
+		{
+			digits[i]++;
+			*returnSize = digitsSize;
+			return digits;
+		}
+		else
+		{
+			digits[i] = 0;
+			i--;
+		}
+	}
+	arr[0] = 1;
+	i = 1;
+	while (i <= digitsSize)
+	{
+		arr[i] = 0;
+		i++;
+	}
+	*returnSize = digitsSize + 1;
+	return arr;
+}
+
+
+int thirdMax(int* nums, int numsSize){
+	long first = LONG_MIN;
+	long second = LONG_MIN;
+	long third = LONG_MIN;
+	if (numsSize == 1)
+	{
+		return *nums;
+	}
+	if (numsSize == 2)
+	{
+		return nums[0] > nums[1] ? nums[0] : nums[1];
+	}
+	for (int i = 0; i <= numsSize - 1; i++)
+	{
+		if (nums[i] > first)
+		{
+			third = second;
+			second = first;
+			first = nums[i];
+		}
+		if (first > nums[i] && nums[i] > second)
+		{
+			third = second;
+			second = nums[i];
+		}
+		if (nums[i] < second && nums[i] > third)
+		{
+			third = nums[i];
+		}
+	}
+	if (third == LONG_MIN)
+	{
+		return first;
+	}
+	return third;
+}
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+	int* arr = (int*)malloc(sizeof(int)* 2);
+	for (int i = 0; i <= numsSize - 1; i++)
+	{
+		for (int j = i + 1; j <= numsSize - 1; j++)
+		{
+			if (nums[i] + nums[j] == target)
+			{
+				arr[0] = i;
+				arr[1] = j;
+				*returnSize = 2;
+				return arr;
+			}
+		}
+	}
+	return false;
+}
+
+
+
