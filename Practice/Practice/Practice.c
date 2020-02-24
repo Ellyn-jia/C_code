@@ -444,4 +444,78 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 }
 
 
+int myAtoi(char * str){
+	int sign = 0;
+	long num = 0;
+	char* p = str;
+	while (*p == ' ')
+	{
+		p++;
+	}
+	sign = (*p == '-') ? -1 : 1;
+	if (*p == '-' || *p == '+')
+		p++;
+	while ((*p >= '0') && (*p <= '9'))
+	{
+		num = num * 10 + (*p - '0');
+		p++;
+		if ((int)num != num)
+			return sign == 1 ? INT_MAX : INT_MIN;
+
+	}
+	num = sign*num;
+	return num;
+}
+
+
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* searchRange(int* nums, int numsSize, int target, int* returnSize){
+	int* arr = (int*)malloc(sizeof(int)* 2);
+	if (!numsSize)
+	{
+		arr[0] = -1;
+		arr[1] = -1;
+		*returnSize = 2;
+		return arr;
+	}
+	int left = 0;
+	int right = numsSize - 1;
+	while (left < right)
+	{
+		int middle = (left + right) / 2;
+		if (nums[middle] >= target)
+			right = middle;
+		else
+			left = middle + 1;
+
+	}
+
+	if (nums[left] != target)
+	{
+		arr[0] = -1;
+		arr[1] = -1;
+		*returnSize = 2;
+		return arr;
+	}
+	arr[0] = left;
+	right = numsSize - 1;
+	while (left < right)
+	{
+		int middle = (left + right + 1) / 2;
+		if (nums[middle] == target)
+			left = middle;
+		else
+			right = middle - 1;
+
+	}
+	arr[1] = right;
+	*returnSize = 2;
+	return arr;
+
+}
+
 
